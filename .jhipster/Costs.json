@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "activities",
+            "otherEntityName": "activities",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dayOfMonth",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "spentDays",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180312134906",
+    "entityTableName": "costs",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

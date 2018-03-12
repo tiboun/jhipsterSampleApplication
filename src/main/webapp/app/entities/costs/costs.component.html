@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span>Costs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-costs" [routerLink]="['/', { outlets: { popup: ['costs-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Costs
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="costs">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Day Of Month</span></th>
+            <th><span>Spent Days</span></th>
+            <th><span>Activities</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let costs of costs ;trackBy: trackId">
+                <td><a [routerLink]="['../costs', costs.id ]">{{costs.id}}</a></td>
+                <td>{{costs.dayOfMonth}}</td>
+                <td>{{costs.spentDays}}</td>
+                <td>
+                    <div *ngIf="costs.activitiesId">
+                        <a [routerLink]="['../activities', costs.activitiesId  ]" >{{costs.activitiesId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../costs', costs.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'costs/'+ costs.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'costs/'+ costs.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

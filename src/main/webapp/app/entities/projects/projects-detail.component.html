@@ -1,0 +1,46 @@
+
+<div *ngIf="projects">
+    <h2><span>Projects</span> {{projects.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{projects.name}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{projects.description}}</span>
+        </dd>
+        <dt><span>Creation Date</span></dt>
+        <dd>
+            <span>{{projects.creationDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Organizations</span></dt>
+        <dd>
+            <div *ngIf="projects.organizationsId">
+                <a [routerLink]="['/organizations', projects.organizationsId]">{{projects.organizationsId}}</a>
+            </div>
+        </dd>
+        <dt><span>Organization</span></dt>
+        <dd>
+            <div *ngIf="projects.organizationId">
+                <a [routerLink]="['/organizations', projects.organizationId]">{{projects.organizationId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'projects/'+ projects.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

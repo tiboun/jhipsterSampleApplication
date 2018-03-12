@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span>Users</span>
+        <button class="btn btn-primary float-right jh-create-entity create-users" [routerLink]="['/', { outlets: { popup: ['users-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Users
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="users">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Firstname</span></th>
+            <th><span>Lastname</span></th>
+            <th><span>Email</span></th>
+            <th><span>Creation Date</span></th>
+            <th><span>Last Login Date</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let users of users ;trackBy: trackId">
+                <td><a [routerLink]="['../users', users.id ]">{{users.id}}</a></td>
+                <td>{{users.firstname}}</td>
+                <td>{{users.lastname}}</td>
+                <td>{{users.email}}</td>
+                <td>{{users.creationDate | date:'medium'}}</td>
+                <td>{{users.lastLoginDate | date:'medium'}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../users', users.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'users/'+ users.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'users/'+ users.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

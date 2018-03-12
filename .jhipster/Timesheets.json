@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "users",
+            "otherEntityName": "users",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "users",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "timesheets"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "activities",
+            "otherEntityName": "activities",
+            "otherEntityRelationshipName": "timesheets"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "month",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20180312134902",
+    "entityTableName": "timesheets",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,62 @@
+entity Users {
+    id Long,
+	firstname String,
+    lastname String,
+    email String,
+    creationDate ZonedDateTime,
+    lastLoginDate ZonedDateTime
+}
+
+entity Timesheets {
+	id Long,
+    month Integer,
+    year Integer,
+    creationDate ZonedDateTime
+}
+
+entity Organizations {
+	id Long,
+    name String,
+    description String,
+    creationDate ZonedDateTime
+}
+
+entity Projects {
+	id Long,
+    name String,
+    description String,
+    creationDate ZonedDateTime
+}
+
+entity Activities {
+	id Long
+}
+
+entity Costs {
+	dayOfMonth Integer,
+    spentDays Integer
+}
+
+relationship OneToOne {
+	Timesheets{user} to Users,
+    Activities{project} to Projects,
+    Projects{organization} to Organizations
+}
+
+relationship OneToMany {
+	Users{timesheets} to Timesheets,
+    Timesheets{activities} to Activities,
+    Activities{costs} to Costs,
+    Organizations{projects} to Projects
+}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate Timesheets with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+//angularSuffix * with mySuffix

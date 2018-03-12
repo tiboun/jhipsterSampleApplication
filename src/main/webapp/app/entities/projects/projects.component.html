@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Projects</span>
+        <button class="btn btn-primary float-right jh-create-entity create-projects" [routerLink]="['/', { outlets: { popup: ['projects-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Projects
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="projects">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Creation Date</span></th>
+            <th><span>Organizations</span></th>
+            <th><span>Organization</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let projects of projects ;trackBy: trackId">
+                <td><a [routerLink]="['../projects', projects.id ]">{{projects.id}}</a></td>
+                <td>{{projects.name}}</td>
+                <td>{{projects.description}}</td>
+                <td>{{projects.creationDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="projects.organizationsId">
+                        <a [routerLink]="['../organizations', projects.organizationsId  ]" >{{projects.organizationsId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="projects.organizationId">
+                        <a [routerLink]="['../organizations', projects.organizationId  ]" >{{projects.organizationId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../projects', projects.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'projects/'+ projects.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'projects/'+ projects.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
